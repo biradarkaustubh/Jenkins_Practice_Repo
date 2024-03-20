@@ -4,21 +4,9 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'Building the project...'
-                // Add your build steps here, such as compiling code, running tests, etc.
+                sh "echo Building the project..."
+                
             }
         }
-        stage('Test') {
-            steps {
-                echo 'Running tests...'
-                // Add your test execution steps here
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying the project...'
-                // Add your deployment steps here, such as deploying to a server or cloud platform
-            }
-        }
-    }
+   }
 }
