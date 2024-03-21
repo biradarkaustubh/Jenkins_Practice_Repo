@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Get Master/Slave Details') {
             steps {
-                script {
+              
                     def masterNode = Jenkins.getInstance().getNode('master')
                     echo "Master Node Name: ${masterNode.name}"
                     echo "Master Node Labels: ${masterNode.getLabelString()}"
@@ -17,7 +17,7 @@ pipeline {
                     for (slaveNode in slaveNodes) {
                         echo " - Name: ${slaveNode.name}, Labels: ${slaveNode.getLabelString()}"
                     }
-                }
+                
             }
         }
     }
