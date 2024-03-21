@@ -1,1 +1,19 @@
+pipeline
+{
+	agent any
+	 
+	 stages{
 
+	  stage('Master server'){
+		steps{
+		def masterNode = Jenkins.getInstance().getNode('master')
+		echo "master node name: ${masterNode.name}" 
+		echo "Master Node Labels: ${masterNode.getLabelString()}"
+
+
+		}	  
+
+	  }
+
+	 }
+}	
