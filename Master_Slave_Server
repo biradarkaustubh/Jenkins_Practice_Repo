@@ -1,19 +1,24 @@
-pipeline
-{
-	agent any
-	 
-	 stages{
+pipeline {
+    agent any
 
-	  stage('Master server'){
-		steps{
-		def masterNode = Jenkins.getInstance().getNode('master')
-		echo "master node name: ${masterNode.name}" 
-		echo "Master Node Labels: ${masterNode.getLabelString()}"
+    stages {
+        stage('Get Master/Slave Details') {
+            steps {
+                script {
+                    def masterNode = Jenkins.getInstance().getNode('master')
+                    echo "Master Node Name: ${masterNode.name}"
+                    echo "Master Node Labels: ${masterNode.getLabelString()}"
 
+                    def slaveNodes = Jenkins.getInstance().getNodes().findAll { node ->
+                        node != masterNode
+                    }
 
-		}	  
-
-	  }
-
-	 }
-}	
+                    echo "Slave Nodes:"
+                    for (slaveNode in slaveNodes) {
+                        echo " - Name: ${slaveNode.name}, Labels: ${slaveNode.getLabelString()}"
+                    }
+                }
+            }
+        }
+    }
+}
